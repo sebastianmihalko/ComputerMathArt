@@ -1,0 +1,14 @@
+public class Cosine implements Function
+{
+  Function function;
+  
+  public Cosine(Function f)
+  {
+    function = f;
+  }
+  
+  public double evaluate(int x, int y)
+  {
+    return Math.cos(function.evaluate(x,y));
+  }
+}

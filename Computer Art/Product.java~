@@ -1,0 +1,16 @@
+public class Product implements Function
+{
+  Function function1;
+  Function function2;
+  
+  public Product(Function f1, Function f2)
+  {
+    function1 = f1;
+    function2 = f2;
+  }
+  
+  public double evaluate(int x, int y)
+  {
+    return function1.evaluate(x,y) * function2.evaluate(x,y);
+  }
+}

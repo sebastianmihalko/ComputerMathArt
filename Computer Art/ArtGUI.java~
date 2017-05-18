@@ -1,0 +1,60 @@
+import java.awt.event.*;  //for ActionListener, ActionEvent
+import javax.swing.*;  //for JFrame, BoxLayout, JLabel, JTextField, JButton
+
+public class ArtGUI implements ActionListener
+{
+  private RandomFunction f;
+  private JButton inc, dec;
+  private int comp;
+  
+  public static void main(String[] args)
+  {
+    new ArtGUI();
+  }
+  
+  public ArtGUI()
+  {
+    f = new RandomFunction(3);
+    comp = f.complexity();
+    
+    JFrame frame = new JFrame();
+    frame.setTitle("Computer Art");
+    
+    frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.PAGE_AXIS));
+    
+    JPanel userStuff = new JPanel();
+    
+    JLabel comptext = new JLabel("Complexity:   "+comp+"      ");
+    userStuff.add(comptext);
+    
+    inc = new JButton("+1");
+    userStuff.add(inc);
+    inc.addActionListener(this);
+    
+    dec = new JButton("-1");
+    userStuff.add(dec);
+    dec.addActionListener(this);
+    
+    frame.add(userStuff);
+    
+    ArtPanel canvas = new ArtPanel();
+    frame.add(canvas);
+    
+    frame.pack();  
+    frame.setVisible(true);  
+  }
+  
+  public void actionPerformed(ActionEvent e)
+  {
+    if(e.getSource().equals(inc))
+    {
+      f.increaseComplexity();
+      comp = f.complexity();
+    }
+    if(e.getSource().equals(dec))
+    {
+      f.decreaseComplexity();
+      comp = f.complexity();
+    }
+  }
+}
